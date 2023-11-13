@@ -2,17 +2,25 @@ config:
   debug: false
 
   host: "0.0.0.0"
-  port: 80
+  port: 9999
   secret-key: "key"
 
   methods:
     NuVotifier:
       enabled: false
-    СommandRun:
+    Commands:
       enabled: false
-      commands: []
+      commands: [
+        "give $player diamond 20"
+      ]
     MySqlRequests:
+      enabled: false
+      url: "jdbc:mysql://localhost:3306/"
+
       database: "mineserv"
       username: "mineserv"
       password: "mineserv"
-      sqlQuery: []
+
+      sqlQuery: [
+        "UPDATE `iconomy` SET `balance`=`balance`+100 WHERE `username`='$player'"
+      ]

@@ -6,11 +6,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import io.greitan.mineserv.commands.MineservCommand;
+import io.greitan.mineserv.methods.Methods;
 import io.greitan.mineserv.network.Network;
 import io.greitan.mineserv.utils.*;
 import java.io.IOException;
-
 import java.util.Objects;
+
+import com.vexsoftware.votifier.VoteHandler;
+import com.vexsoftware.votifier.NuVotifierBukkit;
+import org.bukkit.Server;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
 
 public class MineservRewards extends JavaPlugin {
     private static @Getter MineservRewards instance;
@@ -18,6 +24,7 @@ public class MineservRewards extends JavaPlugin {
     private @Getter String host = "";
     private @Getter int port = 0;
     private @Getter String secretKey = "";
+    private @Getter VoteHandler VoteHandler;
 
     private String lang;
 
@@ -35,6 +42,8 @@ public class MineservRewards extends JavaPlugin {
             new Placeholder(this).register();
         }
 
+        new Methods(this);
+        VoteHandler = getVoteHandler();
         this.reload();
     }
 
@@ -67,5 +76,17 @@ public class MineservRewards extends JavaPlugin {
                 return false;
             }
         } else return false;
+    }
+
+    public NuVotifierBukkit createVoteHandler() {
+        Server server = getServer();
+        PluginManager pluginManager = server.getPluginManager();
+        Plugin votifierPlugin = pluginManager.getPlugin("Votifier");
+
+        if (votifierPlugin instanceof NuVotifierBukkit) {
+            return (NuVotifierBukkit) votifierPlugin;
+        } else {
+            return null;
+        }
     }
 }

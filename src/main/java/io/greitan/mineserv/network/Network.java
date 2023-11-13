@@ -17,8 +17,7 @@ import java.util.Map;
 import java.net.InetSocketAddress;
 import java.net.URLDecoder;
 
-import org.bukkit.Bukkit;
-
+import io.greitan.mineserv.methods.Methods;
 import io.greitan.mineserv.utils.*;
 
 public class Network {
@@ -64,7 +63,7 @@ public class Network {
                 if (isSuccess) {
                     response = "done";
                     t.sendResponseHeaders(200, response.length());
-                    main(project, username, timestamp, signature);
+                    Methods.runMethods(project, username, timestamp, signature);
                 } else {
                     response = "error";
                     t.sendResponseHeaders(500, response.length());
@@ -114,10 +113,6 @@ public class Network {
             e.printStackTrace();
             return false;
         }
-    }
-
-    private static void main(String project, String username, String timestamp, String signature) {
-        Bukkit.getLogger().info(project + username + timestamp + signature);
     }
 
     private static Map<String, String> parse(String queryString) {

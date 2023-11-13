@@ -30,11 +30,15 @@ dependencies {
     compileOnly('io.papermc.paper:paper-api:1.20.2-R0.1-SNAPSHOT')
     compileOnly('me.clip:placeholderapi:2.11.5')
     compileOnly('org.projectlombok:lombok:1.18.30')
-    compileOnly('com.github.nuvotifier.NuVotifier:nuvotifier-api:2.7.2')
     annotationProcessor('org.projectlombok:lombok:1.18.30')
     
     implementation('com.fasterxml.jackson.core:jackson-databind:2.15.2')
     implementation('com.fasterxml.jackson.core:jackson-core:2.15.2')
+    implementation('mysql:mysql-connector-java:8.0.33')
+
+    compileOnly "com.github.NuVotifier.NuVotifier:nuvotifier-api:2.7.2"
+    compileOnly "com.github.NuVotifier.NuVotifier:nuvotifier-common:2.7.2"
+    compileOnly "com.github.NuVotifier.NuVotifier:nuvotifier-bukkit:2.7.2"
 }
 
 task deleteUnusableJar(type: Delete) {
