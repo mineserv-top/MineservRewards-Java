@@ -1,0 +1,26 @@
+name: MineservRewards
+version: 1.0.0
+main: io.greitan.mineserv.MineservRewards
+description: Plugin that adds support for mineserv rewards on Java servers.
+author: Alpha
+website: https://mineserv.top
+api-version: '1.20'
+prefix: MineservRewards
+
+depend: 
+- PlaceholderAPI
+- Votifier
+
+commands:
+  mineserv:
+    description: Rewards main command.
+    usage: /mineserv
+    permission: mineserv.cmd
+    
+permissions:
+  mineserv.cmd:
+    default: true
+  mineserv.reload:
+    default: op
+  mineserv.setup:
+    default: op

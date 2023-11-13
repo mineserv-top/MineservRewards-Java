@@ -1,0 +1,17 @@
+# ru
+messages:
+  cmd-reload: "Плагин перезагружен!"
+
+  cmd-setup-success: "Успешно установлены данные для подключения! Перезагружаю плагин..."
+  cmd-setup-invalid-data: "Не правильные аргументы команды. Использование: /voive setup <secret-key>."
+
+  cmd-invalid-args: "Неверное использование команды. Использование: /rewards <reload | setup>"
+
+  cmd-not-player: "Только игроки могут использовать эту команду!"
+  cmd-not-exists: "Данной команды не существует."
+
+  plugin-config-loaded: "Конфигурация загружена."
+  plugin-command-execuror: "Исполнители команд включены."
+
+  plugin-webserver-run: "Веб сервер запущен по адресу: http://$ip:$port"
+  plugin-webserver-stop: "Веб сервер остановлен!"
