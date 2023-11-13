@@ -43,7 +43,7 @@ public class MineservRewards extends JavaPlugin {
         }
 
         new Methods(this);
-        VoteHandler = getVoteHandler();
+        VoteHandler = createVoteHandler();
         this.reload();
     }
 
