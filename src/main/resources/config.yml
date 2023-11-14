@@ -24,3 +24,6 @@ config:
       sqlQuery: [
         "UPDATE `iconomy` SET `balance`=`balance`+100 WHERE `username`='$player'"
       ]
+
+players:
+  Alpha: 100

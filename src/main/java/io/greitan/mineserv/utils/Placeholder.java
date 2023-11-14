@@ -33,6 +33,8 @@ public class Placeholder extends PlaceholderExpansion  {
     public String onPlaceholderRequest(Player player, String identifier) {
         // Voice icon placeholder "%mineserv_votes%"
         if (identifier.equalsIgnoreCase("votes")) {
+            int voteCount = plugin.getConfig().getInt("players."+player.getName(), 0);
+            return String.valueOf(voteCount);
         }
         return null;
     }

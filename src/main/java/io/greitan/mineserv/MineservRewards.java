@@ -42,8 +42,11 @@ public class MineservRewards extends JavaPlugin {
             new Placeholder(this).register();
         }
 
+        if (Bukkit.getPluginManager().getPlugin("Votifier") != null) {
+            VoteHandler = createVoteHandler();
+        }
+
         new Methods(this);
-        VoteHandler = createVoteHandler();
         this.reload();
     }
 

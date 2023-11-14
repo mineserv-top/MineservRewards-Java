@@ -9,7 +9,6 @@ prefix: MineservRewards
 
 depend: 
 - PlaceholderAPI
-- Votifier
 
 commands:
   mineserv:

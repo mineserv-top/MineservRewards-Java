@@ -3,12 +3,14 @@ package io.greitan.mineserv.methods;
 import org.bukkit.Bukkit;
 
 import io.greitan.mineserv.MineservRewards;
+import io.greitan.mineserv.utils.Logger;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 
 import com.vexsoftware.votifier.model.Vote;
 import com.vexsoftware.votifier.VoteHandler;
@@ -36,15 +38,23 @@ public class Methods {
         if (plugin.getConfig().getBoolean("config.methods.MySqlRequests.enabled")) {
             mysql(project, username, timestamp, signature);
         }
+
+        // Добавление голоса в счётчик.
+        addCount(project, username, timestamp, signature);
     }
 
     private static void votifier(String project, String username, String timestamp, String signature) {
         Vote vote = new Vote("mineserv.top", username, "mineserv.top", timestamp);
         VoteHandler voteHandler = plugin.getVoteHandler();
-        try {
-            voteHandler.onVoteReceived(vote, VotifierSession.ProtocolVersion.UNKNOWN, "mineserv.top");
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        if(Objects.nonNull(voteHandler)) {
+            try {
+                voteHandler.onVoteReceived(vote, VotifierSession.ProtocolVersion.UNKNOWN, "mineserv.top");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            Logger.error("У вас не установлен Votifier. Этот метод не будет работать.");
         }
     }
 
@@ -78,5 +88,11 @@ public class Methods {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void addCount(String project, String username, String timestamp, String signature) {
+        int voteCount = plugin.getConfig().getInt("players."+username, 0);
+        plugin.getConfig().set("players." + username, voteCount + 1);
+        plugin.saveConfig();
     }
 }
